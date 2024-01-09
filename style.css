@@ -1,0 +1,309 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+:root {
+    --main-accent : #364856;
+    --sub-accent : #fff;
+}
+
+.dark-mode {
+    --main-accent : #fff;
+    --sub-accent : #364856;
+}
+
+body {
+    display: flex;
+    gap: 5rem;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--sub-accent);
+}
+
+.game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.time-clock {
+    font-size: 2rem;
+    padding: 3rem;
+    color: var(--main-accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.title-game {
+    font-size: 5rem;
+    padding: 3rem 3rem 0 3rem;
+    color: var(--main-accent);
+    text-align: center;
+}
+.button-icons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+
+}
+
+.button-icons svg {
+    cursor: pointer;
+}
+
+.button-icons svg:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(4, 100px);
+    width: 300px;
+    height: 300px;
+    gap: 1rem;
+    
+}
+
+
+.front-face, .back-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 26%;
+}
+
+.front-face {
+    background-color: var(--sub-accent);
+}
+
+.back-face {
+    background-size: 2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: border-box;
+    color: var(--sub-accent);
+    transform: rotateY(180deg);
+    
+}
+
+svg {
+    stroke:transparent;
+    fill: var(--main-accent);
+    width: 3rem;
+    height: 3rem;
+}
+
+.front-face svg {
+    stroke:transparent;
+    fill: var(--main-accent);
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+.flip-container {
+    perspective: 1000px;
+}
+
+#overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: transparent;
+    z-index: 1000;
+    display: none; 
+}
+.square {
+    width: 75px;
+    height: 100px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    border: 2px solid var(--main-accent);
+    border-radius: 15%;
+}
+
+.square:hover {
+    transform: scale(1.1); 
+    transition: transform 0.3s;
+    
+}
+
+
+
+.flip-container.clicked .square {
+    transform: rotateY(180deg);
+    animation: flip 3s;
+
+}
+
+
+
+
+.trademark-logo-github svg{
+    height: 2rem;
+    width: 2rem;
+    margin: 0 0 1rem 1rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    fill: var(--main-accent);
+}
+
+.trademark {
+    display: block;
+    margin: 0 1rem 1rem 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: var(--main-accent);
+}
+
+
+#retry, #pause, .switch {
+    z-index: 9999;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 3.75rem;
+    height: 2.125rem; 
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--main-accent);
+    transition: .4s;
+    border-radius: 2.125rem; 
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.625rem; 
+    width: 1.625rem; 
+    left: 0.25rem; 
+    bottom: 0.25rem; 
+    background-color: var(--sub-accent); 
+    transition: .4s;
+    border-radius: 2.125rem; 
+
+}
+
+input:checked + .slider {
+    background-color: var(--main-accent); 
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(1.625rem); 
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--main-accent);
+  }
+
+  
+@media only screen and (max-width: 600px) {
+    .time-clock {
+        display: none;
+    }
+    .game-header {
+        justify-content: center;
+    }
+
+    body {
+        gap: 2rem;
+    }
+
+    .switch {
+        width: 3.256rem; 
+        height: 1.0625rem; 
+    }
+    .slider:before {
+        height: 0.75rem; 
+        width: 0.75rem;
+        left: 0.175rem; 
+        bottom: 0.175rem; 
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(0.625rem); 
+      }
+}
+
+@media only screen and (min-width: 601px) and (max-width:700px) {
+    .time-clock {
+        display: none;
+    }
+    .game-header {
+        justify-content: center;
+    }
+
+    body {
+        gap: 3rem;
+    }
+    
+
+    input:checked + .slider:before {
+        transform: translateX(0.625 rem); 
+      }
+
+}
+
+
+@media only screen and (min-width: 701px) and (max-width:1200px) {
+    .time-clock {
+        display: none;
+    }
+    .game-header {
+        justify-content: center;
+    }
+
+    body {
+        gap: 4rem;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(1.25rem); 
+      }
+
+}
+
+
+
