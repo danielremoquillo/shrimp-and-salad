@@ -209,13 +209,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 //Gameover
                 if(remainingCards.length === 1){
                     clearInterval(timer);
-                    localStorage.setItem('bestTime', time);
                     let lastScore = localStorage.getItem('score');
-                    if(lastScore != null && lastScore < score){
+                    if(lastScore != null && lastScore > score){
                         document.getElementById('best-time').textContent = time;
-                        localStorage.setItem('score', score);
-                    }
-                    else{
+                        localStorage.setItem('bestTime', time);
                         localStorage.setItem('score', score);
                     }
 
